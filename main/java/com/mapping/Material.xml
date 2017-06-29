@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dao.MaterialDao">
+
+    <select id="findAllMaterial" resultType="com.model.Material">
+        SELECT
+            id,
+            name,
+            department_id AS departmentId,
+            detail_info as detailInfo,
+            status,
+            date_format(borrow_start, '%Y-%m-%d') as borrowStart,
+            date_format(borrow_end, '%Y-%m-%d') as borrowEnd,
+            date_format(create_date, '%Y-%m-%d') as createDate,
+            date_format(modify_date, '%Y-%m-%d') as modifyDate,
+            user_cdsid as userCdsid
+        FROM material;
+    </select>
+
+    <select id="findMaterialById" resultType="com.model.Material">
+        SELECT
+        id,
+        name,
+        department_id AS departmentId,
+        detail_info as detailInfo,
+        status,
+        date_format(borrow_start, '%Y-%m-%d') as borrowStart,
+        date_format(borrow_end, '%Y-%m-%d') as borrowEnd,
+        date_format(create_date, '%Y-%m-%d') as createDate,
+        date_format(modify_date, '%Y-%m-%d') as modifyDate,
+        user_cdsid as userCdsid
+        FROM material
+        where user_cdsid = #{cdsid};
+    </select>
+
+
+
+</mapper>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dao.UserDao">
+
+    <select id="selectUserByID" resultType="User">
+        SELECT cdsid,password,name,department_id,phone,level,create_date,modify_date
+        FROM user
+        WHERE cdsid = #{cdsid} AND password = #{password};
+    </select>
+
+    <select id="checkLogin" resultType="java.lang.Integer">
+        SELECT count(1)
+        FROM user
+        WHERE cdsid = #{cdsid} AND password = #{password};
+    </select>
+
+    <select id="checkUserInfo" resultType="User">
+        SELECT cdsid,password,name,department_id,phone,level,create_date,modify_date
+        FROM user
+        WHERE cdsid = #{cdsid} AND password = #{password};
+    </select>
+
+
+
+
+</mapper>
+
+
+
+
+
+
