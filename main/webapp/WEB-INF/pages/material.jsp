@@ -170,7 +170,7 @@
                 <div class="col-sm-12">
                     <div class="nest" id="FootableClose">
                         <div class="body-nest" id="Footable">
-                            <table class="table-striped footable-res footable metro-blue" data-page-size="6">
+                            <table class="table-striped footable-res footable metro-blue" data-page-size="20">
                                 <thead>
                                 <tr>
                                     <th>

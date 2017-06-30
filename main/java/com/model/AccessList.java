@@ -1,10 +1,13 @@
 package com.model;
 
+import org.springframework.stereotype.Component;
+
 import java.sql.Date;
 
 /**
  * Created by xugenli on 2017/6/30.
  */
+@Component
 public class AccessList {
     private int access_id;
     private String accessName;

@@ -31,7 +31,7 @@ public class MainController {
     private MaterialService materialService;
 
     @Autowired
-    private User loginUser = null;
+    private User user;
 
     @Autowired
     private List<Material> materials;
@@ -47,24 +47,25 @@ public class MainController {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String login(String cdsid, String password, ModelMap modelMap) {
         //需要在前台写name这边才能获取到cdsid和password
-        loginUser.setCdsid(cdsid);
-        loginUser.setPassword(password);
-        logger.info("start check user info: cdsid-->" + loginUser.getCdsid() + ",password-->" + loginUser.getPassword());
-        loginUser = userService.checkUserInfo(loginUser);
+        User user = new User();
+        user.setCdsid(cdsid);
+        user.setPassword(password);
+        logger.info("start check user info: cdsid-->" + user.getCdsid() + ",password-->" + user.getPassword());
+        user = userService.checkUserInfo(user);
         //如果验证正确就跳转 验证失败返回错误界面
-        if (loginUser != null) {
+        if (user != null) {
             logger.info("用户存在,跳转到材料界面");
             //管理员查询所有材料 非管理员查询与自己相关材料
-            if (loginUser.getLevel() == 3) {
+            if (user.getLevel() == 3) {
                 materials = materialService.findAllMaterial();
             } else {
-                materials = materialService.findMaterialById(loginUser);
+                materials = materialService.findMaterialById(user);
             }
             for (Material a : materials) {
                 logger.info(a.getDetailInfo().toString());
             }
             modelMap.addAttribute("materials", materials);
-            modelMap.addAttribute("user", loginUser);
+            modelMap.addAttribute("user", user);
             return "material";
         } else {
             //没有查询到用户返回前台提示
