@@ -1,5 +1,6 @@
 package com.model;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.sql.Date;
@@ -10,12 +11,23 @@ import java.sql.Date;
 @Component
 public class Material {
 
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
+
+    @Autowired
+    private Department department;
+
     private int id;
     private String name;
     private int departmentId;
     private String detailInfo;
     private String status;
-//    要使用java.sql.Date来保证格式正确
+    //要使用java.sql.Date来保证格式正确
     private Date borrowStart;
     private Date borrowEnd;
     private Date createDate;
@@ -102,8 +114,6 @@ public class Material {
     public void setUserCdsid(String userCdsid) {
         this.userCdsid = userCdsid;
     }
-
-
 
 
 }

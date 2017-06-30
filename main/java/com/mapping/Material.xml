@@ -3,38 +3,60 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.dao.MaterialDao">
+    <!--column要对应sql语句的别名,property要对应model的字段-->
+    <resultMap id="materialResult" type="Material">
+        <id property="id" column="id"/>
+        <result property="name" column="materialName"/>
+        <result property="type" column="type"/>
+        <result property="departmentId" column="departmentId"/>
+        <result property="detailInfo" column="detailInfo"/>
+        <result property="status" column="status"/>
+        <result property="borrowStart" column="borrowStart"/>
+        <result property="borrowEnd" column="borrowEnd"/>
+        <result property="createDate" column="createDate"/>
+        <result property="modifyDate" column="modifyDate"/>
+        <result property="userCdsid" column="userCdsid"/>
+        <association property="department" javaType="Department">
+            <id property="department_id" column="departmentId"/>
+            <result property="name" column="departmentName"/>
+            <result property="ownerCdsid" column="ownerCdsid"/>
+            <result property="parrentId" column="parrentId"/>
+            <result property="modifyDate" column="modifyDate"/>
+            <result property="createDate" column="createDate"/>
+        </association>
+    </resultMap>
 
-    <select id="findAllMaterial" resultType="com.model.Material">
+    <select id="findAllMaterial" resultMap="materialResult">
         SELECT
             id,
-            name,
-            department_id AS departmentId,
-            detail_info as detailInfo,
+            a.name                                 AS materialName,
+            b.name                                 AS departmentName,
+            a.department_id                        AS departmentId,
+            detail_info                            AS detailInfo,
             status,
-            date_format(borrow_start, '%Y-%m-%d') as borrowStart,
-            date_format(borrow_end, '%Y-%m-%d') as borrowEnd,
-            date_format(create_date, '%Y-%m-%d') as createDate,
-            date_format(modify_date, '%Y-%m-%d') as modifyDate,
-            user_cdsid as userCdsid
-        FROM material;
+            date_format(borrow_start, '%Y-%m-%d')  AS borrowStart,
+            date_format(borrow_end, '%Y-%m-%d')    AS borrowEnd,
+            date_format(a.create_date, '%Y-%m-%d') AS createDate,
+            date_format(a.modify_date, '%Y-%m-%d') AS modifyDate,
+            a.user_cdsid                           AS userCdsid
+        FROM material a, department b
+        WHERE a.department_id = b.department_id;
     </select>
 
-    <select id="findMaterialById" resultType="com.model.Material">
+    <select id="findMaterialById" resultMap="materialResult">
         SELECT
-        id,
-        name,
-        department_id AS departmentId,
-        detail_info as detailInfo,
-        status,
-        date_format(borrow_start, '%Y-%m-%d') as borrowStart,
-        date_format(borrow_end, '%Y-%m-%d') as borrowEnd,
-        date_format(create_date, '%Y-%m-%d') as createDate,
-        date_format(modify_date, '%Y-%m-%d') as modifyDate,
-        user_cdsid as userCdsid
-        FROM material
-        where user_cdsid = #{cdsid};
+            id,
+            a.name                                 AS materialName,
+            b.name                                 AS departmentName,
+            a.department_id                        AS departmentId,
+            detail_info                            AS detailInfo,
+            status,
+            date_format(borrow_start, '%Y-%m-%d')  AS borrowStart,
+            date_format(borrow_end, '%Y-%m-%d')    AS borrowEnd,
+            date_format(a.create_date, '%Y-%m-%d') AS createDate,
+            date_format(a.modify_date, '%Y-%m-%d') AS modifyDate,
+            a.user_cdsid                           AS userCdsid
+        FROM material a, department b
+        WHERE a.department_id = b.department_id AND user_cdsid = #{cdsid};
     </select>
-
-
-
 </mapper>

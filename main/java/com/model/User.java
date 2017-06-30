@@ -12,11 +12,11 @@ public class User {
     private String cdsid;
     private String password;
     private String name;
-    private int department_id;
+    private int departmentId;
     private String phone;
     private int level;
-    private Date create_date;
-    private Date modify_date;
+    private Date createDate;
+    private Date modifyDate;
 
     public String getCdsid() {
         return cdsid;
@@ -42,12 +42,12 @@ public class User {
         this.name = name;
     }
 
-    public int getDepartment_id() {
-        return department_id;
+    public int getDepartmentId() {
+        return departmentId;
     }
 
-    public void setDepartment_id(int department_id) {
-        this.department_id = department_id;
+    public void setDepartmentId(int departmentId) {
+        this.departmentId = departmentId;
     }
 
     public String getPhone() {
@@ -66,21 +66,20 @@ public class User {
         this.level = level;
     }
 
-    public Date getCreate_date() {
-        return create_date;
+    public Date getCreateDate() {
+        return createDate;
     }
 
-    public void setCreate_date(Date create_date) {
-        this.create_date = create_date;
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
     }
 
-    public Date getModify_date() {
-        return modify_date;
+    public Date getModifyDate() {
+        return modifyDate;
     }
 
-    public void setModify_date(Date modify_date) {
-        this.modify_date = modify_date;
+    public void setModifyDate(Date modifyDate) {
+        this.modifyDate = modifyDate;
     }
-
 }
 

@@ -16,42 +16,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-
-    <!-- Le styles -->
     <script type="text/javascript" src="assets/js/jquery.min.js"></script>
-
-    <!--  <link rel="stylesheet" href="assets/css/style.css"> -->
     <link rel="stylesheet" href="assets/css/loader-style.css">
     <link rel="stylesheet" href="assets/css/bootstrap.css">
     <link rel="stylesheet" href="assets/css/signin.css">
-
-    <!-- Fav and touch icons -->
-
-
     <link rel="shortcut icon" href="assets/ico/minus.png">
     <script>
         function checkLogin() {
-            $("#userInfo").submit();
+            if ($("#cdsid").text() == '' || $("#password").text() == '') {
+                alert(1);
+                //  $('#validate').hidden = false;
+            } else {
+                $("#userInfo").method='POST';
+                $("#userInfo").action = '/login';
+                $("#userInfo").submit();
+            }
         }
     </script>
 </head>
 
 <body>
-
 <!-- Preloader -->
 <div class="container">
     <div class="" id="login-wrapper">
         <div class="row">
             <div class="col-md-4 col-md-offset-4">
                 <div id="logo-login">
-                    <h1>VOAS
-                        <span>v1.3</span>
-                    </h1>
+                    <h1>VOAS<span>v1.3</span></h1>
                 </div>
             </div>
         </div>
-
-        <form id="userInfo" method="post" action="/login">
+        <form id="userInfo">
             <div class="row">
                 <div class="col-md-4 col-md-offset-4">
                     <div class="account-box">
@@ -66,16 +61,12 @@
                                 <label for="password">密码</label>
                                 <input type="password" name="password" id="password" class="form-control">
                             </div>
-                            <%--                       <div class="checkbox pull-left">
-                                                       <label>
-                                                           <input type="checkbox">记住用户名</label>
-                                                   </div>--%>
                             <c:if test="${message==3}">
                                 <p style="color: #d9534f"><c:out value="用户名或密码错误"></c:out></p>
                             </c:if>
+                            <label style="color: #d9534f" id="validate" hidden="hidden">请输入用户名或密码</label>
                             <button class="btn btn btn-primary pull-right" onclick="checkLogin()">登 录</button>
                         </form>
-
                         <div class="row-block">
                             <div class="row">
                             </div>

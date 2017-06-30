@@ -211,7 +211,7 @@
                                     <tr>
                                         <td>${material.id}</td>
                                         <td>${material.userCdsid}</td>
-                                        <td>${material.departmentId}</td>
+                                        <td>${material.department.name}</td>
                                         <td>${material.name}</td>
                                         <td>${material.borrowStart}</td>
                                         <td>${material.borrowEnd}</td>

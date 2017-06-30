@@ -17,7 +17,6 @@ public interface UserService {
     int updateAccount(Account account);
     int deleteAccount(Integer id);
     User selectUserByID(Integer id);
-
     int checkLogin(User user);
     //登录时取得用户信息
     User checkUserInfo(User user);

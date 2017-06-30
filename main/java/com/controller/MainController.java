@@ -54,14 +54,12 @@ public class MainController {
         //如果验证正确就跳转 验证失败返回错误界面
         if (loginUser != null) {
             logger.info("用户存在,跳转到材料界面");
-            //查询材料列表
             //管理员查询所有材料 非管理员查询与自己相关材料
             if (loginUser.getLevel() == 3) {
                 materials = materialService.findAllMaterial();
             } else {
                 materials = materialService.findMaterialById(loginUser);
             }
-
             for (Material a : materials) {
                 logger.info(a.getDetailInfo().toString());
             }
@@ -74,8 +72,6 @@ public class MainController {
             logger.info("用户不存在,跳转到登录界面");
             return "login";
         }
-
-
     }
 
 
