@@ -1,6 +1,7 @@
 package com.dao;
 
 import com.model.User;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -9,6 +10,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserDao {
     User selectUserByID(int id);
-    User checkUserInfo(User user);
+    User checkUserInfo(@Param("cdsid") String cdsid, @Param("password") String password);
     int checkLogin(User user);
 }

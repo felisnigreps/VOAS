@@ -19,6 +19,6 @@ public interface UserService {
     User selectUserByID(Integer id);
     int checkLogin(User user);
     //登录时取得用户信息
-    User checkUserInfo(User user);
+    User checkUserInfo(String cdsid,String password);
 
 }

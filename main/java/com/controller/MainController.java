@@ -47,11 +47,8 @@ public class MainController {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String login(String cdsid, String password, ModelMap modelMap) {
         //需要在前台写name这边才能获取到cdsid和password
-        User user = new User();
-        user.setCdsid(cdsid);
-        user.setPassword(password);
-        logger.info("start check user info: cdsid-->" + user.getCdsid() + ",password-->" + user.getPassword());
-        user = userService.checkUserInfo(user);
+        logger.info("start check user info: cdsid-->" + cdsid + ",password-->" + password);
+        user = userService.checkUserInfo(cdsid,password);
         //如果验证正确就跳转 验证失败返回错误界面
         if (user != null) {
             logger.info("用户存在,跳转到材料界面");

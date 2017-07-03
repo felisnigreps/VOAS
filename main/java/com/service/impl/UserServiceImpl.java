@@ -28,11 +28,11 @@ public class UserServiceImpl implements UserService {
     }
 
     public int insertAccount(Account account) {
-         return accountDao.insertAccount(account);
+        return accountDao.insertAccount(account);
     }
 
     public List<Account> findAccounts(int beginId, int endId) {
-        return accountDao.findAccountsById(beginId,endId);
+        return accountDao.findAccountsById(beginId, endId);
     }
 
     @Override
@@ -46,9 +46,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User selectUserByID(Integer id){
-        if(userDao == null)
-            return null;
+    public User selectUserByID(Integer id) {
+        if (userDao == null) return null;
         return userDao.selectUserByID(id);
     }
 
@@ -58,7 +57,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User checkUserInfo(User user) {
-        return userDao.checkUserInfo(user);
+    public User checkUserInfo(String cdsid, String password) {
+        return userDao.checkUserInfo(cdsid, password);
     }
+
+
 }
