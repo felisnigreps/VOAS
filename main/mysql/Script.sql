@@ -36,6 +36,9 @@ VALUES ('gxu',
 # type  personal office supplies/other supplies
 # status InUse/Lent out/Retired/stock
 
+# 材料的几种状态
+#1.InUse 2.LentOut 3.Retired 4.Return 5.Stock
+
 CREATE TABLE material (
   id INT(20) PRIMARY KEY NOT NULL AUTO_INCREMENT ,
   name VARCHAR(15),
@@ -89,3 +92,21 @@ CREATE TABLE access_list (
 
 insert into access_list values (3,'admin','管理员权限',sysdate(),sysdate());
 insert into access_list values (4,'user','普通用户权限',sysdate(),sysdate());
+
+
+
+#1.InUse 2.LentOut 3.Retired 4.Return 5.Stock
+
+CREATE TABLE material_status (
+  status_id INT(20) PRIMARY KEY NOT NULL ,
+  status_name VARCHAR(15),
+  status_comment VARCHAR(30),
+  create_date DATETIME,
+  modify_date DATETIME
+)ENGINE = myisam DEFAULT CHARSET=utf8;
+
+insert into material_status values (1,'InUse','',sysdate(),sysdate());
+insert into material_status values (2,'LentOut','',sysdate(),sysdate());
+insert into material_status values (3,'Retired','',sysdate(),sysdate());
+insert into material_status values (4,'Return','',sysdate(),sysdate());
+insert into material_status values (5,'Stock','',sysdate(),sysdate());

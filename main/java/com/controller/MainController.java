@@ -2,8 +2,10 @@ package com.controller;
 
 import com.model.Account;
 import com.model.Material;
+import com.model.Status;
 import com.model.User;
 import com.service.MaterialService;
+import com.service.MaterialStatusService;
 import com.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,10 +33,16 @@ public class MainController {
     private MaterialService materialService;
 
     @Autowired
+    private MaterialStatusService materialStatusService;
+
+    @Autowired
     private User user;
 
     @Autowired
     private List<Material> materials;
+
+    @Autowired
+    private List<Status> status;
 
 
     // 跳转登录页
@@ -55,6 +63,7 @@ public class MainController {
             //管理员查询所有材料 非管理员查询与自己相关材料
             if (user.getLevel() == 3) {
                 materials = materialService.findAllMaterial();
+                status = materialStatusService.findAllStatus();
             } else {
                 materials = materialService.findMaterialById(user);
             }
@@ -63,6 +72,7 @@ public class MainController {
             }
             modelMap.addAttribute("materials", materials);
             modelMap.addAttribute("user", user);
+            modelMap.addAttribute("status",status);
             return "material";
         } else {
             //没有查询到用户返回前台提示

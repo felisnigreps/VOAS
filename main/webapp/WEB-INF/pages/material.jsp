@@ -218,9 +218,19 @@
                                         <td>${material.createDate}</td>
                                         <td>${material.modifyDate}</td>
                                         <td>${material.detailInfo}</td>
-                                        <td data-value="1">
-                                            <span class="status-metro status-active"
-                                                  title="Active">${material.status}</span>
+                                        <td>
+                                            <select id="lllkkk">
+                                                <c:forEach items="${status}" var="status">
+                                                    <c:choose>
+                                                        <c:when test="${status.statusName == material.status}">
+                                                            <option selected>${status.statusName}</option>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <option>${status.statusName}</option>
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                </c:forEach>
+                                            </select>
                                         </td>
                                     </tr>
                                 </c:forEach>
@@ -233,7 +243,6 @@
                                 </tr>
                                 </tfoot>
                             </table>
-
                         </div>
                     </div>
                 </div>
@@ -245,7 +254,6 @@
     </div>
 </div>
 <!--  END OF PAPER WRAP -->
-
 
 <!-- MAIN EFFECT -->
 <script type="text/javascript" src="assets/js/preloader.js"></script>
@@ -268,6 +276,7 @@
     $(function () {
         $('.footable-res').footable();
     });
+
 </script>
 </body>
 
