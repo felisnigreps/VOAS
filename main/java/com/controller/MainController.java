@@ -39,6 +39,9 @@ public class MainController {
     private User user;
 
     @Autowired
+    private Material material;
+
+    @Autowired
     private List<Material> materials;
 
     @Autowired
@@ -56,7 +59,7 @@ public class MainController {
     public String login(String cdsid, String password, ModelMap modelMap) {
         //需要在前台写name这边才能获取到cdsid和password
         logger.info("start check user info: cdsid-->" + cdsid + ",password-->" + password);
-        user = userService.checkUserInfo(cdsid,password);
+        user = userService.checkUserInfo(cdsid, password);
         //如果验证正确就跳转 验证失败返回错误界面
         if (user != null) {
             logger.info("用户存在,跳转到材料界面");
@@ -65,14 +68,11 @@ public class MainController {
             if (user.getLevel() == 3) {
                 materials = materialService.findAllMaterial();
             } else {
-                materials = materialService.findMaterialById(user);
-            }
-            for (Material a : materials) {
-                System.out.println(a.getStatusId());
+                materials = materialService.findMaterialByCdsid(user);
             }
             modelMap.addAttribute("materials", materials);
             modelMap.addAttribute("user", user);
-            modelMap.addAttribute("status",status);
+            modelMap.addAttribute("status", status);
             return "material";
         } else {
             //没有查询到用户返回前台提示
@@ -83,12 +83,18 @@ public class MainController {
     }
 
 
-    //查询所有用户的信息
-    @RequestMapping(value = "/main", method = RequestMethod.GET)
-    public String findAllAccount(ModelMap modelMap) {
-        List<Account> allAccount = userService.findAllAccount();
-        modelMap.addAttribute("allAccount", allAccount);
-        return "userAccount";
+    // 查询单个材料信息
+    @RequestMapping(value = {"/editMaterial"})
+    public String findMaterialDetail(int id,String cdsid, ModelMap modelMap) {
+        System.out.println("-----------"+id);
+        material = materialService.findMaterialById(id);
+        user = userService.selectUserById(cdsid);
+        status = materialStatusService.findAllStatus();
+        modelMap.addAttribute("user", user);
+        modelMap.addAttribute("material", material);
+        modelMap.addAttribute("status", status);
+
+        return "materialDetail";
     }
 
 
@@ -104,6 +110,17 @@ public class MainController {
         ModelMap.addAttribute("allAccount", allAccount);
         return "userAccount";
     }
+
+    //查询所有用户的信息
+    @RequestMapping(value = "/main", method = RequestMethod.GET)
+    public String findAllAccount(ModelMap modelMap) {
+        List<Account> allAccount = userService.findAllAccount();
+        modelMap.addAttribute("allAccount", allAccount);
+        return "userAccount";
+    }
+
+
+
 
     // 新增账户
     @RequestMapping(value = "/insert")

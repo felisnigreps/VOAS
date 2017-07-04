@@ -67,10 +67,10 @@
         function findAccounts() {
             var beginId = $("#beginId").val();
             var endId = $("#endId").val();
-            if (beginId == "") {
+            if ("" === beginId) {
                 beginId = 0;
             }
-            if (endId == "") {
+            if ("" === endId) {
                 endId = 9999;
             }
             location.href = "/findAccounts/" + beginId + "/" + endId;

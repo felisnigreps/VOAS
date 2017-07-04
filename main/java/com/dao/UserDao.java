@@ -9,7 +9,11 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface UserDao {
-    User selectUserByID(int id);
+    User checkUserInfo(int id);
+
     User checkUserInfo(@Param("cdsid") String cdsid, @Param("password") String password);
+
     int checkLogin(User user);
+
+    User selectUserById(String cdsid);
 }

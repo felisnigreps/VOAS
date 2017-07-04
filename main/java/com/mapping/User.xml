@@ -4,10 +4,10 @@
 
 <mapper namespace="com.dao.UserDao">
 
-    <select id="selectUserByID" resultType="User">
+    <select id="selectUserById" resultType="User">
         SELECT cdsid,password,name,department_id,phone,level,create_date,modify_date
         FROM user
-        WHERE cdsid = #{cdsid} AND password = #{password};
+        WHERE cdsid = #{cdsid};
     </select>
 
     <select id="checkLogin" resultType="java.lang.Integer">

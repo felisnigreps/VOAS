@@ -13,7 +13,7 @@ import java.util.List;
 public interface MaterialDao {
     List<Material> findAllMaterial();
 
-    List<Material> findMaterialById(User user);
+    List<Material> findMaterialByCdsid(User user);
 
-
+    Material findMaterialById(int id);
 }

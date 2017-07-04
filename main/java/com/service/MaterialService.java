@@ -12,6 +12,9 @@ import java.util.List;
 @Service
 public interface MaterialService {
     List<Material> findAllMaterial();
-    List<Material> findMaterialById(User user);
+
+    List<Material> findMaterialByCdsid(User user);
+
+    Material findMaterialById(int id);
 
 }

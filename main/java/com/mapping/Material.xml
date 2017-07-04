@@ -52,7 +52,7 @@
         WHERE a.department_id = b.department_id AND a.status_id = c.status_id;
     </select>
 
-    <select id="findMaterialById" resultMap="materialResult">
+    <select id="findMaterialByCdsid" resultMap="materialResult">
         SELECT
             id,
             a.name                                 AS materialName,
@@ -69,4 +69,23 @@
         FROM material a, department b, material_status c
         WHERE a.department_id = b.department_id AND a.status_id = c.status_id AND user_cdsid = #{cdsid};
     </select>
+    <select id="findMaterialById" resultMap="materialResult">
+        SELECT
+            id,
+            a.name                                 AS materialName,
+            b.name                                 AS departmentName,
+            a.department_id                        AS departmentId,
+            detail_info                            AS detailInfo,
+            a.status_id                            AS statusId,
+            date_format(borrow_start, '%Y-%m-%d')  AS borrowStart,
+            date_format(borrow_end, '%Y-%m-%d')    AS borrowEnd,
+            date_format(a.create_date, '%Y-%m-%d') AS createDate,
+            date_format(a.modify_date, '%Y-%m-%d') AS modifyDate,
+            a.user_cdsid                           AS userCdsid,
+            c.status_name                          AS statusName
+        FROM material a, department b, material_status c
+        WHERE a.department_id = b.department_id AND a.status_id = c.status_id AND id = #{id};
+    </select>
+
+
 </mapper>

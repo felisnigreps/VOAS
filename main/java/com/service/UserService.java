@@ -16,9 +16,13 @@ public interface UserService {
     List<Account> findAccounts(int beginId, int endId);
     int updateAccount(Account account);
     int deleteAccount(Integer id);
-    User selectUserByID(Integer id);
+
+
+
     int checkLogin(User user);
     //登录时取得用户信息
     User checkUserInfo(String cdsid,String password);
+    User selectUserById(String cdsid);
+
 
 }

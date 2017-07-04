@@ -45,11 +45,7 @@ public class UserServiceImpl implements UserService {
         return accountDao.deleteAccount(id);
     }
 
-    @Override
-    public User selectUserByID(Integer id) {
-        if (userDao == null) return null;
-        return userDao.selectUserByID(id);
-    }
+
 
     @Override
     public int checkLogin(User user) {
@@ -59,6 +55,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public User checkUserInfo(String cdsid, String password) {
         return userDao.checkUserInfo(cdsid, password);
+    }
+
+    @Override
+    public User selectUserById(String cdsid) {
+        if (userDao == null) return null;
+        return userDao.selectUserById(cdsid);
     }
 
 

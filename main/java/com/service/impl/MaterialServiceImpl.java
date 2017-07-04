@@ -24,7 +24,12 @@ public class MaterialServiceImpl implements MaterialService {
     }
 
     @Override
-    public List<Material> findMaterialById(User user) {
-        return materialDao.findMaterialById(user);
+    public List<Material> findMaterialByCdsid(User user) {
+        return materialDao.findMaterialByCdsid(user);
+    }
+
+    @Override
+    public Material findMaterialById(int id) {
+        return materialDao.findMaterialById(id);
     }
 }

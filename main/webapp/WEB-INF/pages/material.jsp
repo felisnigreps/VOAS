@@ -52,8 +52,12 @@
             <button class="navbar-toggle toggle-menu-mobile toggle-left" type="button">
                 <span class="entypo-list-add"></span>
             </button>
+
+
             <div id="logo-mobile" class="visible-xs">
-                <h1>VOAS<span>v1.0</span></h1>
+                <h1>VOAS
+                    <span>v1.0</span>
+                </h1>
             </div>
 
         </div>
@@ -61,68 +65,44 @@
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div id="bs-example-navbar-collapse-1" class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
+            <div id="nt-title-container" class="navbar-left running-text visible-lg" style="width: auto">
+                <ul class="digital">如有任何问题请直接联系IT</ul>
+            </div>
 
-                <li class="dropdown">
+            <ul style="margin-right:0;" class="nav navbar-nav navbar-right">
+                <li>
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                        Hi, <c:out value="${user.name}"/>
+                    </a>
 
-                    <ul style="margin: 11px 0 0 9px;" role="menu" class="dropdown-menu dropdown-wrap">
-                        <li>
-                            <a href="#">
-                                <img alt="" class="img-msg img-circle"
-                                     src="http://api.randomuser.me/portraits/thumb/men/1.jpg">Jhon Doe <b>Just Now</b>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <img alt="" class="img-msg img-circle"
-                                     src="http://api.randomuser.me/portraits/thumb/women/1.jpg">Jeniffer <b>3 Min
-                                Ago</b>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <img alt="" class="img-msg img-circle"
-                                     src="http://api.randomuser.me/portraits/thumb/men/2.jpg">Dave <b>2 Hours Ago</b>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <img alt="" class="img-msg img-circle"
-                                     src="http://api.randomuser.me/portraits/thumb/men/3.jpg"><i>Keanu</i> <b>1 Day
-                                Ago</b>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <img alt="" class="img-msg img-circle"
-                                     src="http://api.randomuser.me/portraits/thumb/men/4.jpg"><i>Masashi</i> <b>2 Mounth
-                                Ago</b>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <div>See All Messege</div>
+                </li>
+                <li>
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                        <span class="icon-gear"></span>&#160;&#160;Setting</a>
+                    <ul role="menu" class="dropdown-setting dropdown-menu">
+
+                        <li class="theme-bg">
+                            <div id="button-bg"></div>
+                            <div id="button-bg2"></div>
+                            <div id="button-bg3"></div>
+                            <div id="button-bg5"></div>
+                            <div id="button-bg6"></div>
+                            <div id="button-bg7"></div>
+                            <div id="button-bg8"></div>
+                            <div id="button-bg9"></div>
+                            <div id="button-bg10"></div>
+                            <div id="button-bg11"></div>
+                            <div id="button-bg12"></div>
+                            <div id="button-bg13"></div>
                         </li>
                     </ul>
                 </li>
-                <li>
-                </li>
-                <li><a href="#"><i data-toggle="tooltip" data-placement="bottom" title="Help" style="font-size:20px;"
-                                   class="icon-help tooltitle"></i></a>
-                </li>
-
             </ul>
-            <div id="nt-title-container" class="navbar-left running-text visible-lg" style="width: auto">
-                <ul class="digital">如有任何问题请直接联系IT</ul>
-                <ul class="digital">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hi,<c:out value="${user.name}"/></ul>
-            </div>
 
         </div>
+        <!-- /.navbar-collapse -->
     </div>
+    <!-- /.container-fluid -->
 </nav>
 
 <!-- /END OF TOP NAVBAR -->
@@ -149,7 +129,7 @@
             <div class="side-bar">
                 <ul class="topnav menu-left-nest">
                     <li>
-                        <a class="tooltip-tip ajax-load" href="/material" title="Dashboard">
+                        <a class="tooltip-tip ajax-load" href="#" title="Dashboard">
                             <i class="icon-window"></i>
                             <span>物品借用清单</span>
                         </a>
@@ -201,8 +181,11 @@
                                         物品详情
                                     </th>
                                     <%--data-hide 修复边框问题--%>
-                                    <th data-hide="phone">
+                                    <th>
                                         状态
+                                    </th>
+                                    <th data-hide="phone">
+                                        操作
                                     </th>
                                 </tr>
                                 </thead>
@@ -231,6 +214,11 @@
                                                     </c:choose>
                                                 </c:forEach>
                                             </select>
+                                        </td>
+                                        <td>
+                                            <button type="button" class="btn btn-success"
+                                                    onclick="editMaterial(${material.id})">编辑
+                                            </button>
                                         </td>
                                     </tr>
                                 </c:forEach>
@@ -276,6 +264,10 @@
     $(function () {
         $('.footable-res').footable();
     });
+
+    function editMaterial(id) {
+        location.href = "/editMaterial?id="+id+"&cdsid=${user.cdsid}";
+    }
 
 </script>
 </body>
