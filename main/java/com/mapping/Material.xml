@@ -10,17 +10,25 @@
         <result property="type" column="type"/>
         <result property="departmentId" column="departmentId"/>
         <result property="detailInfo" column="detailInfo"/>
-        <result property="status" column="status"/>
+        <result property="statusId" column="statusId"/>
         <result property="borrowStart" column="borrowStart"/>
         <result property="borrowEnd" column="borrowEnd"/>
         <result property="createDate" column="createDate"/>
         <result property="modifyDate" column="modifyDate"/>
         <result property="userCdsid" column="userCdsid"/>
         <association property="department" javaType="Department">
-            <id property="department_id" column="departmentId"/>
+            <id property="departmentId" column="departmentId"/>
             <result property="name" column="departmentName"/>
             <result property="ownerCdsid" column="ownerCdsid"/>
             <result property="parrentId" column="parrentId"/>
+            <result property="modifyDate" column="modifyDate"/>
+            <result property="createDate" column="createDate"/>
+        </association>
+        <!--association里的property很奇怪啊 是代表什么呢-->
+        <association property="status" javaType="Status">
+            <id property="statusId" column="statusId"/>
+            <result property="statusName" column="statusName"/>
+            <result property="statusComment" column="statusComment"/>
             <result property="modifyDate" column="modifyDate"/>
             <result property="createDate" column="createDate"/>
         </association>
@@ -33,14 +41,15 @@
             b.name                                 AS departmentName,
             a.department_id                        AS departmentId,
             detail_info                            AS detailInfo,
-            status,
+            a.status_id                            AS statusId,
             date_format(borrow_start, '%Y-%m-%d')  AS borrowStart,
             date_format(borrow_end, '%Y-%m-%d')    AS borrowEnd,
             date_format(a.create_date, '%Y-%m-%d') AS createDate,
             date_format(a.modify_date, '%Y-%m-%d') AS modifyDate,
-            a.user_cdsid                           AS userCdsid
-        FROM material a, department b
-        WHERE a.department_id = b.department_id;
+            a.user_cdsid                           AS userCdsid,
+            c.status_name                          AS statusName
+        FROM material a, department b, material_status c
+        WHERE a.department_id = b.department_id AND a.status_id = c.status_id;
     </select>
 
     <select id="findMaterialById" resultMap="materialResult">
@@ -50,13 +59,14 @@
             b.name                                 AS departmentName,
             a.department_id                        AS departmentId,
             detail_info                            AS detailInfo,
-            status,
+            a.status_id                            AS statusId,
             date_format(borrow_start, '%Y-%m-%d')  AS borrowStart,
             date_format(borrow_end, '%Y-%m-%d')    AS borrowEnd,
             date_format(a.create_date, '%Y-%m-%d') AS createDate,
             date_format(a.modify_date, '%Y-%m-%d') AS modifyDate,
-            a.user_cdsid                           AS userCdsid
-        FROM material a, department b
-        WHERE a.department_id = b.department_id AND user_cdsid = #{cdsid};
+            a.user_cdsid                           AS userCdsid,
+            c.status_name                          AS statusName
+        FROM material a, department b, material_status c
+        WHERE a.department_id = b.department_id AND a.status_id = c.status_id AND user_cdsid = #{cdsid};
     </select>
 </mapper>

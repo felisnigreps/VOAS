@@ -10,18 +10,19 @@ import java.sql.Date;
 @Component
 public class Department {
 
-    private int department_id;
+
+    private int departmentId;
     private String name;
     private String ownerCdsid;
     private Date createDate;
     private Date modifyDate;
 
-    public int getDepartment_id() {
-        return department_id;
+    public int getDepartmentId() {
+        return departmentId;
     }
 
-    public void setDepartment_id(int department_id) {
-        this.department_id = department_id;
+    public void setDepartmentId(int departmentId) {
+        this.departmentId = departmentId;
     }
 
     public String getName() {
@@ -55,9 +56,6 @@ public class Department {
     public void setModifyDate(Date modifyDate) {
         this.modifyDate = modifyDate;
     }
-
-
-
 
 
 }

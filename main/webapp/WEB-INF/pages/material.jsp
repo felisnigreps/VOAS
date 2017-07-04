@@ -219,11 +219,11 @@
                                         <td>${material.modifyDate}</td>
                                         <td>${material.detailInfo}</td>
                                         <td>
-                                            <select id="lllkkk">
+                                            <select id="materialStatus">
                                                 <c:forEach items="${status}" var="status">
                                                     <c:choose>
-                                                        <c:when test="${status.statusName == material.status}">
-                                                            <option selected>${status.statusName}</option>
+                                                        <c:when test="${status.statusId == material.statusId}">
+                                                            <option selected>${material.status.statusName}</option>
                                                         </c:when>
                                                         <c:otherwise>
                                                             <option>${status.statusName}</option>

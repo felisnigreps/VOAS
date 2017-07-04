@@ -22,11 +22,32 @@ public class Material {
     @Autowired
     private Department department;
 
+    @Autowired
+    private Status status;
+
     private int id;
     private String name;
     private int departmentId;
     private String detailInfo;
-    private String status;
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+
+    public int getStatusId() {
+        return statusId;
+    }
+
+    public void setStatusId(int statusId) {
+        this.statusId = statusId;
+    }
+
+    private int statusId;
     //要使用java.sql.Date来保证格式正确
     private Date borrowStart;
     private Date borrowEnd;
@@ -67,13 +88,6 @@ public class Material {
         this.detailInfo = detailInfo;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
 
     public Date getBorrowStart() {
         return borrowStart;

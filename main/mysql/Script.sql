@@ -39,19 +39,20 @@ VALUES ('gxu',
 # 材料的几种状态
 #1.InUse 2.LentOut 3.Retired 4.Return 5.Stock
 
-CREATE TABLE material (
-  id INT(20) PRIMARY KEY NOT NULL AUTO_INCREMENT ,
-  name VARCHAR(15),
-  type int(5),
-  department_id int(5),
-  detail_info VARCHAR(40),
-  status VARCHAR(20),
-  borrow_start DATETIME,
-  borrow_end DATETIME,
-  create_date DATETIME,
-  modify_date DATETIME,
-  user_cdsid VARCHAR(15)
-)ENGINE = myisam AUTO_INCREMENT = 1 DEFAULT CHARSET=utf8;
+CREATE TABLE `material` (
+  `id` int(20) NOT NULL AUTO_INCREMENT,
+  `name` varchar(15) DEFAULT NULL,
+  `type` int(5) DEFAULT NULL,
+  `department_id` int(5) DEFAULT NULL,
+  `detail_info` varchar(40) DEFAULT NULL,
+  `status_id` int(20) DEFAULT NULL,
+  `borrow_start` datetime DEFAULT NULL,
+  `borrow_end` datetime DEFAULT NULL,
+  `create_date` datetime DEFAULT NULL,
+  `modify_date` datetime DEFAULT NULL,
+  `user_cdsid` varchar(15) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
 # 自增长可以不指定id
 INSERT into material (id, name, type, department_id, detail_info, status,borrow_start,borrow_end,create_date, modify_date,user_cdsid) VALUES

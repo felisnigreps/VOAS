@@ -60,15 +60,15 @@ public class MainController {
         //如果验证正确就跳转 验证失败返回错误界面
         if (user != null) {
             logger.info("用户存在,跳转到材料界面");
+            status = materialStatusService.findAllStatus();
             //管理员查询所有材料 非管理员查询与自己相关材料
             if (user.getLevel() == 3) {
                 materials = materialService.findAllMaterial();
-                status = materialStatusService.findAllStatus();
             } else {
                 materials = materialService.findMaterialById(user);
             }
             for (Material a : materials) {
-                logger.info(a.getDetailInfo().toString());
+                System.out.println(a.getStatusId());
             }
             modelMap.addAttribute("materials", materials);
             modelMap.addAttribute("user", user);
